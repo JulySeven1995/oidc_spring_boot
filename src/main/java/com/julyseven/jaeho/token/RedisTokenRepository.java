@@ -10,12 +10,11 @@ import lombok.RequiredArgsConstructor;
 
 @Repository
 @RequiredArgsConstructor
-public class RedisTokenRepository implements TokenRepository{
+public class RedisTokenRepository implements TokenRepository {
     
     private final String namespace = "token:";
 
     private final RedisRepository redisRepository;
-
 
     public Optional<String> get(String key) {
 

@@ -42,10 +42,6 @@ public class JwtTokenValidator implements OAuth2TokenValidator<Jwt> {
 
         JwtAuthenticationToken jwtAuthenticationToken = new JwtAuthenticationToken(token);
 
-        HttpHeaders headers = new HttpHeaders();
-
-        headers.set("Authorization", "Bearer " + token.getTokenValue());
-
         if (this.tokenRepository.get(token.getTokenValue()).isPresent()) {
             
             log.debug("토큰 발견!");
@@ -54,6 +50,10 @@ public class JwtTokenValidator implements OAuth2TokenValidator<Jwt> {
         }
 
         try {
+
+            HttpHeaders headers = new HttpHeaders();
+
+            headers.set("Authorization", "Bearer " + token.getTokenValue());
 
             // 유저 정보 Fetching 을 통해 token 유효성 체크
             restTemplate.exchange(
