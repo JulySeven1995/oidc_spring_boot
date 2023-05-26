@@ -1,9 +1,11 @@
-package com.julyseven.jaeho.token;
+package com.julyseven.jaeho.token.repository;
 
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Repository;
-
 import com.julyseven.jaeho.redis.RedisRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -24,5 +26,17 @@ public class RedisTokenRepository implements TokenRepository {
     public void set(String key, String value, Long expires) {
 
         this.redisRepository.set(namespace + key, value, expires);
+    }
+
+    @Override
+    public Set<String> findAllTokens() {
+        return this.redisRepository.findAllKeys(namespace + "*").stream()
+            .map(token -> token.replace(namespace, Strings.EMPTY))
+        .collect(Collectors.toSet());
+    }
+
+    @Override
+    public void delete(String key) {
+        this.redisRepository.delete(namespace + key);
     }
 }

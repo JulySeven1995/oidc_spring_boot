@@ -1,7 +1,7 @@
 package com.julyseven.jaeho.config;
 
 import com.julyseven.jaeho.oauth2.JwtTokenValidator;
-import com.julyseven.jaeho.token.RedisTokenRepository;
+import com.julyseven.jaeho.token.repository.RedisTokenRepository;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.convert.converter.Converter;

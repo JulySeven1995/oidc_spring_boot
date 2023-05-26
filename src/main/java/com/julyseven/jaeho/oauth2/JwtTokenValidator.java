@@ -16,7 +16,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.client.RestTemplate;
 
-import com.julyseven.jaeho.token.TokenRepository;
+import com.julyseven.jaeho.token.repository.TokenRepository;
 
 
 @Slf4j
