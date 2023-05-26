@@ -1,7 +1,16 @@
 
+
+logging:
+  level:
+    com.julyseven.jaeho: DEBUG
+
 spring:
   application:
     name: jaeho-project
+  redis:
+    host: localhost
+    port: 6379
+    username: jaeho-redis
   security:
     oauth2:
       client:
@@ -11,8 +20,9 @@ spring:
         registration:
           oidc:
             client-id: jaeho-client
-            client-secret: sCMQZdkQO2SJMmjRk5zW22y3EMFmO5j9
+            client-secret: jaeho-client
             scope:
               - openid
               - profile
               - email
+    
