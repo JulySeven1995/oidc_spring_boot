@@ -2,7 +2,6 @@ package com.julyseven.jaeho.token.scheduler;
 
 import java.util.Set;
 
-import com.julyseven.jaeho.token.scheduler.TokenWarder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import com.julyseven.jaeho.token.repository.RedisTokenRepository;
-import com.julyseven.jaeho.token.repository.TokenRepository;
 
 @Slf4j
 @Component

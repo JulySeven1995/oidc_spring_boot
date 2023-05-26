@@ -1,7 +1,6 @@
 package com.julyseven.jaeho.redis;
 
 import java.time.Duration;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
