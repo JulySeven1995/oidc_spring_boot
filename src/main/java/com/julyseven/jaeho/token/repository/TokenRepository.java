@@ -9,7 +9,5 @@ public interface TokenRepository {
 
     void set(String key, String value, Long expires);
 
-    Set<String> findAllTokens();
-
     void delete(String key);
 }

@@ -2,6 +2,8 @@
 
 logging:
   level:
+    org.keycloak: DEBUG
+    org.springframework.security: DEBUG
     com.julyseven.jaeho: DEBUG
 
 spring:
@@ -16,13 +18,21 @@ spring:
       client:
         provider:
           oidc:
-            issuer-uri: 'http://localhost:9000/auth/realms/master'
+            issuer-uri: '${keycloak.auth-server-url}/realms/${keycloak.realm}'
         registration:
           oidc:
-            client-id: jaeho-client
-            client-secret: jaeho-client
+            client-id: '${keycloak.resource}'
+            client-secret: '${keycloak.credentials.secret}'
             scope:
               - openid
               - profile
               - email
-    
+
+keycloak:
+  realm: jaeho
+  resource: jaeho-client
+  auth-server-url: 'http://localhost:9000/auth'
+  use-resource-role-mappings: true
+  ssl-required: external
+  credentials:
+    secret: 'mp07f2RaVOypqXLwer6S0WhXlh14ISpw'

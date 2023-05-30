@@ -1,9 +1,12 @@
 package com.julyseven.jaeho.oauth2;
 
+import com.nimbusds.jwt.JWTParser;
+import io.vavr.control.Try;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.Instant;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -42,8 +45,11 @@ public class JwtTokenValidator implements OAuth2TokenValidator<Jwt> {
 
         JwtAuthenticationToken jwtAuthenticationToken = new JwtAuthenticationToken(token);
 
-        if (this.tokenRepository.get(token.getTokenValue()).isPresent()) {
-            
+        String sid = String.valueOf(token.getClaims().get("sid"));
+
+        Optional<String> existsToken = this.tokenRepository.get(sid);
+        if (existsToken.isPresent() && existsToken.get().equals(token.getTokenValue())) {
+
             log.debug("토큰 발견!");
             SecurityContextHolder.getContext().setAuthentication(jwtAuthenticationToken);
             return OAuth2TokenValidatorResult.success();
@@ -67,7 +73,7 @@ public class JwtTokenValidator implements OAuth2TokenValidator<Jwt> {
 
             Long duration = (expiresAt - Instant.now().toEpochMilli()) / 1000;
 
-            this.tokenRepository.set(token.getTokenValue(), expiresAt.toString(), duration);
+            this.tokenRepository.set(sid, token.getTokenValue(), duration);
 
             log.debug("토큰이 없어서 저장!");
 

@@ -29,13 +29,6 @@ public class RedisTokenRepository implements TokenRepository {
     }
 
     @Override
-    public Set<String> findAllTokens() {
-        return this.redisRepository.findAllKeys(namespace + "*").stream()
-            .map(token -> token.replace(namespace, Strings.EMPTY))
-        .collect(Collectors.toSet());
-    }
-
-    @Override
     public void delete(String key) {
         this.redisRepository.delete(namespace + key);
     }
