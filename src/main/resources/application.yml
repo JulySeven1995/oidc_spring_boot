@@ -32,7 +32,5 @@ keycloak:
   realm: jaeho
   resource: jaeho-client
   auth-server-url: 'http://localhost:9000/auth'
-  use-resource-role-mappings: true
-  ssl-required: external
   credentials:
     secret: 'mp07f2RaVOypqXLwer6S0WhXlh14ISpw'
