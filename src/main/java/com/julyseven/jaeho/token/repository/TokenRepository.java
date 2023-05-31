@@ -1,7 +1,6 @@
 package com.julyseven.jaeho.token.repository;
 
 import java.util.Optional;
-import java.util.Set;
 
 public interface TokenRepository {
     

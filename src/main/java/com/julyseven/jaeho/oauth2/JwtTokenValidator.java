@@ -1,7 +1,5 @@
 package com.julyseven.jaeho.oauth2;
 
-import com.nimbusds.jwt.JWTParser;
-import io.vavr.control.Try;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.Instant;
